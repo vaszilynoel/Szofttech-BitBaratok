@@ -1,116 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Projekt terv – Google Classroom stílusú alkalmazás</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 30px;
-            background-color: #f9f9f9;
-            line-height: 1.6;
-            color: #222;
-        }
-        h1 {
-            text-align: center;
-            color: #111;
-        }
-        section {
-            background: #fff;
-            border-radius: 6px;
-            padding: 16px 20px;
-            margin: 16px 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-        }
-        h2 {
-            color: #333;
-            font-size: 1.15rem;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #e6e6e6;
-            padding-bottom: 6px;
-        }
-        ul { padding-left: 20px; margin: 8px 0; }
-        p { margin: 6px 0; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BitBarátok — 5 feladat összefoglaló</title>
+  <style>
+    :root {
+      --primary: #005eff;
+      --primary-light: #e8f0ff;
+      --text: #111;
+      --muted: #555;
+      --bg: #f7f9fc;
+      --card-bg: #fff;
+      --radius: 12px;
+      --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #6a8dff);
+      color: white;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .meta div {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 24px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 0;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    thead {
+      background: var(--primary-light);
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f2f5fa;
+    }
+
+    tbody tr:hover {
+      background: #e8efff;
+      transition: background 0.2s ease;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    ol li {
+      margin-bottom: 6px;
+    }
+
+    a.task-link {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a.task-link:hover {
+      color: #003fc7;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-<h1>Projekt terv — Google Classroom stílusú alkalmazás</h1>
 
-<section id="csoport">
-    <h2>1. Csoport tagjai, struktúrája</h2>
-    <ul>
-        <li>Vaszily Noel Péter</li>
-        <li>Marcell Fodor</li>
-        <li>Petercsák Regő</li>
-        <li>Zsombor Gábor Tóth</li>
-        <li>Zsombor Szabó</li>
-    </ul>
-</section>
+  <header>
+    <h1>Csapat: BitBarátok</h1>
+    <div class="meta">
+      <div>Gyakvezér: Árvai László</div>
+      <div>Projekt: Google Classroomhoz hasonló felület elkészítése</div>
+    </div>
+  </header>
 
-<section id="fejlesztes">
-    <h2>2. Fejlesztési terv: mérföldkövek, eredmények</h2>
-    <ul>
-        <li>1. hét: ------------------------------------------</li>
-        <li>2. hét: ------------------------------------------</li>
-        <li>3. hét: ------------------------------------------</li>
-        <li>4. hét: ------------------------------------------</li>
-        <li>5. hét: ------------------------------------------</li>
-    </ul>
-</section>
+  <section>
+    <h2>Csapattagok</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Név</th>
+          <th>E-mail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vaszily Noel Péter</td>
+          <td>noelvaszily@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Tóth Zsombor Gábor</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fodor Marcell</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Szabó Zsombor</td>
+          <td>zsomborszabo960@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Petercsák Regő</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-<section id="nyelvek">
-    <h2>3. Programozói nyelvek, fejlesztő eszközök</h2>
-    <ul>
-        <li>Frontend: HTML, CSS, JavaScript (esetleg React)</li>
-        <li>Backend: Node.js + Express (vagy más választott keretrendszer)</li>
-        <li>Adatbázis: MongoDB (vagy relációs: PostgreSQL)</li>
-        <li>Verziókezelés és együttműködés: Git + GitHub</li>
-    </ul>
-</section>
+  <section>
+    <h2>5 feladat összefoglaló</h2>
+    <ol>
+      <li>
+        H1: Projekt Terv — 
+        <a href="H1.html" target="_blank" class="task-link">Megnyitás</a>
+      </li>
+      <li>Feladat B — külön HTML fájl fog ide kerülni</li>
+      <li>Feladat C — külön HTML fájl fog ide kerülni</li>
+      <li>Feladat D — külön HTML fájl fog ide kerülni</li>
+      <li>Feladat E — külön HTML fájl fog ide kerülni</li>
+    </ol>
+  </section>
 
-<section id="eszkozok">
-    <h2>4. Használni tervezett eszközök, technikák</h2>
-    <ul>
-        <li>Agilis munkamódszer (Scrum: rövid sprintek, heti standup)</li>
-        <li>Reszponzív dizájn — mobil és asztali nézet támogatása</li>
-        <li>RESTful API a frontend–backend kommunikációhoz</li>
-        <li>Alapvető hitelesítés (pl. JWT) és jogosultságkezelés</li>
-    </ul>
-</section>
+  <footer>
 
-<section id="produktumok">
-    <h2>5. Leendő produktumok (dokumentum), és létrejöttük ideje</h2>
-    <p>
-        Várható produktumok: részletes projektjelentés (PDF), technikai dokumentáció, valamint egy bemutató (demo) verzió.
-        A dokumentumok és a demo a félév végére, a záró prezentációhoz lesznek leadva.
-    </p>
-</section>
-
-<section id="teszteles">
-    <h2>6. Tesztelési követelmények</h2>
-    <ul>
-        <li>Bejelentkezés / kijelentkezés stabil működése</li>
-        <li>Tantermek létrehozása, csatlakozás és jogosultságok helyes kezelése</li>
-        <li>Feladatok közzététele, fájlleadások kezelése és megtekintése</li>
-        <li>Egyszerre több felhasználó terhelése alatt a rendszer stabilitása</li>
-        <li>Alapvető hibakezelés és felhasználóbarát visszajelzések</li>
-    </ul>
-</section>
-
-<section id="demo">
-    <h2>7. Bemutatás (demó) és szállítás módja, ideje</h2>
-    <p>
-        A forráskódot és a projektjelentést online (pl. GitHub / tanári felület) töltjük fel a megadott határidőig.
-    </p>
-</section>
-
-<section id="forrasok">
-    <h2>8. Információ források</h2>
-    <ul>
-        <li>Google Classroom (inspiráció és UX áttekintés)</li>
-    </ul>
-</section>
+  </footer>
 
 </body>
 </html>

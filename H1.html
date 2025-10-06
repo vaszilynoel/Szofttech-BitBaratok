@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Projekt terv – Google Classroom stílusú alkalmazás</title>
+</head>
+<body>
+<h1>Projekt terv — Google Classroom stílusú alkalmazás</h1>
+
+<h3>1. Csoport struktúrája</h3>
+<ul>
+    <li><strong>Projektmenedzser:</strong> Felelős a feladatok kiosztásáért, a határidők követéséért és az esetleges akadályok elhárításáért. Rendszeres megbeszéléseket (pl. heti vagy napi rövid &quot;stand-up&quot;) szervez.</li>
+    <li><strong>Frontend fejlesztő:</strong> A felhasználói felület (UI) és a kliensoldali logika megvalósításáért felel.</li>
+    <li><strong>Backend fejlesztő:</strong> A szerveroldali logika, adatbázis-kezelés és az API (Application Programming Interface) fejlesztéséért felel.</li>
+    <li><strong>UI/UX tervező:</strong> A felhasználói élmény (UX) és a felület kinézetének (UI) megtervezéséért felel. Ha nincs külön ember, a frontend csapat veszi át ezt a feladatot.</li>
+    <li><strong>Tesztelő / QA (Quality Assurance):</strong> A szoftver minőségének biztosításáért, a hibák felderítéséért és dokumentálásáért felel. Ezt a szerepet a csapattagok felváltva is betölthetik.</li>
+</ul>
+<h3>2. Fejlesztési terv: mérföldkövek, eredmények</h3>
+<ul>
+    <li><p><strong>1. mérföldkő: Alapok és felhasználókezelés</strong></p>
+        <ul>
+            <li>Projekt inicializálása, verziókövetés (Git) beállítása.</li>
+            <li>Adatbázis séma megtervezése.</li>
+            <li>Felhasználói regisztráció, bejelentkezés és authentikáció (pl. JWT tokenekkel).</li>
+            <li>Alapvető felület (layout) létrehozása.</li>
+        </ul>
+    </li>
+    <li><p><strong>2. mérföldkő: Kurzusok (tantermek) kezelése</strong></p>
+        <ul>
+            <li>Oktatók létrehozhatnak, módosíthatnak és törölhetnek kurzusokat.</li>
+            <li>Diákok csatlakozhatnak kurzusokhoz egyedi kód segítségével.</li>
+            <li>Felhasználói vezérlőpult, ahol a felhasználók látják a saját kurzusaikat.</li>
+        </ul>
+    </li>
+    <li><p><strong>3. mérföldkő: Feladatok és bejegyzések létrehozása</strong></p>
+        <ul>
+            <li>Oktatók feladatokat és közleményeket tehetnek közzé a kurzus &quot;falán&quot;.</li>
+            <li>A diákok láthatják ezeket a bejegyzéseket.</li>
+            <li>Fájlok csatolásának lehetősége a bejegyzésekhez.</li>
+        </ul>
+    </li>
+    <li><p><strong>4. mérföldkő: Feladatok beadása és értékelése</strong></p>
+        <ul>
+            <li>Diákok beadhatják a megoldásaikat (szöveg, fájl).</li>
+            <li>Az oktatók megtekinthetik a beadott munkákat és értékelhetik (pontozhatják) azokat.</li>
+        </ul>
+    </li>
+    <li><p><strong>5. mérföldkő: Befejező munkálatok</strong></p>
+        <ul>
+            <li>Felhasználói felület finomhangolása.</li>
+            <li>Átfogó tesztelés és hibajavítás.</li>
+            <li>Alkalmazás telepítése (deployment) éles környezetbe.</li>
+        </ul>
+    </li>
+</ul>
+<h3>3. Programozói nyelvek, fejlesztő eszközök</h3>
+<ul>
+    <li><p><strong>Frontend (kliensoldal):</strong></p>
+        <ul>
+            <li><strong>Keretrendszer:</strong> React</li>
+            <li><strong>Nyelv:</strong> TypeScript</li>
+            <li><strong>Stílusozás:</strong> Tailwind CSS és Styled Components</li>
+        </ul>
+    </li>
+    <li><p><strong>Backend (szerveroldal):</strong></p>
+        <ul>
+            <li><strong>Környezet:</strong> Node.js</li>
+            <li><strong>Keretrendszer:</strong> Express.js</li>
+        </ul>
+    </li>
+    <li><p><strong>Adatbázis:</strong></p>
+        <ul>
+            <li><strong>Relációs (SQL):</strong> PostgreSQL</li>
+        </ul>
+    </li>
+    <li><p><strong>Fejlesztői eszközök:</strong></p>
+        <ul>
+            <li><strong>Kódszerkesztő:</strong> Visual Studio Code.</li>
+            <li><strong>Verziókezelés:</strong> Git és GitHub/GitLab.</li>
+            <li><strong>API tesztelés:</strong> Postman vagy Insomnia.</li>
+        </ul>
+    </li>
+</ul>
+<h3>4. Használni tervezett eszközök, technikák</h3>
+<ul>
+    <li><strong>Módszertan:</strong> Scrum, a feladatok követésére pedig Trello és GitHub Projects.</li>
+    <li><strong>Architektúra:</strong> RESTful API</li>
+    <li><strong>Authentikáció:</strong> JSON Web Tokens (JWT)</li>
+    <li><strong>CI/CD (Continuous Integration/Continuous Deployment):</strong> GitHub Actions, manuális unit tesztek</li>
+    <li><strong>Konténerizáció (opcionális):</strong> Docker</li>
+</ul>
+<h3>5. Leendő produktumok (dokumentum), és létrejöttük ideje</h3>
+<ul>
+    <li><strong>Projektterv (ez a dokumentum):</strong> A projekt elején.</li>
+    <li><strong>Technikai dokumentáció:</strong> Folyamatosan a fejlesztés során. API végpontok leírása OpenAPI-al.</li>
+    <li><strong>Forráskód:</strong> Egy GitHub repository-ban</li>
+    <li><strong>Tesztelési dokumentáció:</strong> A tesztelési fázisban, amely tartalmazza a teszteseteket és az eredményeket.</li>
+    <li><strong>Működő alkalmazás (demó):</strong> A projekt végén, egy publikusan elérhető linken.</li>
+</ul>
+<h3>6. Tesztelési követelmények</h3>
+<ul>
+    <li><strong>Funkcionális tesztelés</strong></li>
+    <li><strong>Usability (használhatósági) tesztelés</strong> </li>
+    <li><strong>Kompatibilitási tesztelés</strong></li>
+    <li><strong>Teljesítménytesztelés</strong></li>
+    <li><strong>Biztonsági tesztelés</strong></li>
+</ul>
+<h3>7. Bemutatás (demó) és szállítás módja, ideje</h3>
+<ul>
+    <li><p><strong>Szállítás:</strong></p>
+        <ul>
+            <li>A teljes forráskód feltöltése egy nyilvános GitHub repository-ba.</li>
+            <li>Egy részletes <code>README.md</code> fájl, amely leírja a projekt célját, a használt technológiákat és a telepítési lépéseket.</li>
+            <li>Link a működő, telepített alkalmazáshoz (pl. Vercel, Heroku, vagy más felhőszolgáltató segítségével).</li>
+        </ul>
+    </li>
+    <li><p><strong>Bemutatás:</strong></p>
+        <ul>
+            <li>Élő demó a félév végi prezentáción, ahol bemutatjátok a fő funkciókat oktatói és diák szerepkörben is.</li>
+        </ul>
+    </li>
+    <li><p><strong>Időpont:</strong> A projekt utolsó hetében, a leadási határidő előtt.</p>
+    </li>
+</ul>
+<h3>8. Információforrások</h3>
+<ul>
+    <li><strong>Hivatalos dokumentációk:</strong> A választott nyelvek és keretrendszerek (React, Node.js, PostgreSQL stb.) hivatalos weboldalai.</li>
+    <li><strong>Inspiráció:</strong> Maga a Google Classroom, valamint UI/UX design oldalak, mint a Dribbble vagy a Behance.</li>
+    <li><strong>Online kurzusok és tutorialok:</strong> FreeCodeCamp, The Odin Project, és különböző YouTube csatornák, amelyek teljes webalkalmazások készítését mutatják be.</li>
+    <li><strong>Közösségi oldalak:</strong> Stack Overflow, Reddit (pl. r/webdev, r/reactjs) a felmerülő problémák gyors megoldásához.</li>
+</ul>
+
+</body>
+</html>
