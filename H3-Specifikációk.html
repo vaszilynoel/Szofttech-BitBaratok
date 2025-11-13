@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>H2 - Bevezetés - V1.2</title>
+</head>
+<body>
+<h1><strong>Szoftver Követelmény Specifikáció</strong></h1>
+<p><strong>Projekt címe:</strong> Google Classroom stílusú oktatási platform</p>
+<p><strong>Csapatnév:</strong> BitBarátok</p>
+<p><strong>Dokumentum verzió:</strong> 1.0</p>
+<p><strong>Dátum:</strong> 2025. november 13.</p>
+<hr>
+<h1><strong>Történet</strong></h1>
+<table>
+    <thead>
+    <tr>
+        <th style="text-align:left">Dátum</th>
+        <th style="text-align:left">Verzió</th>
+        <th style="text-align:left">Leírás</th>
+        <th style="text-align:left">Szerző</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="text-align:left">2025. 11. 08.</td>
+        <td style="text-align:left">0.1</td>
+        <td style="text-align:left">Kezdeti verzió</td>
+        <td style="text-align:left">Vaszily Noel Péter</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 09.</td>
+        <td style="text-align:left">0.2</td>
+        <td style="text-align:left">Első és második pontok</td>
+        <td style="text-align:left">Vaszily Noel Péter</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 11.</td>
+        <td style="text-align:left">0.3</td>
+        <td style="text-align:left">Harmadik és negyedik pontok</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 12.</td>
+        <td style="text-align:left">0.4</td>
+        <td style="text-align:left">Nem funkcionális követelmények (5-8. pontok)</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 13.</td>
+        <td style="text-align:left">0.5</td>
+        <td style="text-align:left">Utolsó pontok (9-13.)</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 13.</td>
+        <td style="text-align:left">1.0</td>
+        <td style="text-align:left">Finomhangolások és a dokumentum befejezése</td>
+        <td style="text-align:left">Vaszily Noel Péter</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<h1><strong>Tartalomjegyzék</strong></h1>
+<ol>
+    <li>Bevezetés</li>
+    <li>Áttekintés</li>
+    <li>A rendszer funkciói
+        <ul>
+            <li>3.1. Use Case Modell: Áttekintő diagram</li>
+            <li>3.2. Aktorok leírása</li>
+            <li>3.3. Use Case-ek részletes leírása
+                <ul>
+                    <li>3.3.1. Regisztráció és bejelentkezés</li>
+                    <li>3.3.2. Kurzus kezelése</li>
+                    <li>3.3.3. Feladat és közlemény kezelése</li>
+                    <li>3.3.4. Feladat beadása és értékelése</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>Használhatóság</li>
+    <li>Megbízhatóság</li>
+    <li>Teljesítmény</li>
+    <li>Támogatottság</li>
+    <li>Tervezési korlátozások</li>
+    <li>On-line dokumentáció és Help rendszer</li>
+    <li>Felhasznált kész komponensek</li>
+    <li>Interfészek</li>
+    <li>Alkalmazott szabványok</li>
+    <li>Mellékletek</li>
+</ol>
+<hr>
+<h1><strong>1. Bevezetés</strong></h1>
+<p><em>Introduction</em></p>
+<p>Ez a dokumentum a &quot;Google Classroom stílusú alkalmazás&quot; szoftver követelményeit specifikálja. Célja, hogy
+    részletesen, a tervezéshez szükséges mélységben bemutassa a rendszerrel szemben támasztott funkcionális és nem
+    funkcionális követelményeket. A dokumentum alapul szolgál a fejlesztői csapat számára a tervezési, implementációs és
+    tesztelési fázisok során, valamint segít a megrendelőnek meggyőződni arról, hogy a készülő termék megfelel az
+    elvárásoknak.</p>
+<h1><strong>2. Áttekintés</strong></h1>
+<p><em>Overview</em></p>
+<p>A modern oktatásban a digitális eszközök használata elterjedt, azonban a különböző platformok gyakran nincsenek
+    integrálva, ami a diákok és oktatók számára is nehézségeket okoz. A feladatok, határidők és tananyagok követése
+    több, párhuzamosan használt rendszerben történik, ami kommunikációs zavarokhoz és adminisztratív terhek
+    növekedéséhez vezet.</p>
+<p>A fejlesztendő rendszer célja egy központi, könnyen kezelhető platform létrehozása, amely egyetlen felületen
+    integrálja a kurzus- és feladatkezelés, valamint a kommunikáció funkcióit.</p>
+<ul>
+    <li><strong>Legfontosabb funkciók:</strong> Kurzusok létrehozása és kezelése, feladatok és közlemények közzététele,
+        feladatok beadása és értékelése, integrált fájlkezelés.
+    </li>
+    <li><strong>Felhasználók jellemzői:</strong> A rendszer két fő felhasználói csoportja az <strong>Oktatók</strong>,
+        akik a kurzusok tartalmát menedzselik, és a <strong>Diákok</strong>, akik a kurzusok résztvevői. Mindkét
+        csoporttól elvárható az alapvető számítógépes és internetes ismeretek megléte.
+    </li>
+    <li><strong>Korlátozások:</strong> A rendszer web-alapú, használatához modern böngésző és stabil internetkapcsolat
+        szükséges.
+    </li>
+    <li><strong>Feltételezések és függőségek:</strong> A rendszer a projekttervben meghatározott technológiai
+        keretrendszerekre (Node.js, React) épül, és működése a szerveroldali infrastruktúra rendelkezésre állásától
+        függ.
+    </li>
+</ul>
+<h1><strong>3. A rendszer funkciói</strong></h1>
+<p><em>Specific Requirements</em></p>
+<p>Ez a fejezet a rendszerrel szemben támasztott funkcionális követelményeket részletezi use case modell
+    segítségével.</p>
+<h2><strong>3.1. Use Case Modell: Áttekintő diagram</strong></h2>
+<p>A rendszer fő funkcióit egy központi use case diagram szemlélteti, amely bemutatja az aktorok és a főbb
+    rendszerműveletek kapcsolatát.</p>
+<ul>
+    <li><strong>Aktorok:</strong>
+        <ul>
+            <li>Oktató</li>
+            <li>Diák</li>
+        </ul>
+    </li>
+    <li><strong>Fő Use Case-ek:</strong>
+        <ul>
+            <li>Regisztráció és Bejelentkezés (mindkét aktor)</li>
+            <li>Kurzusok Kezelése
+                <ul>
+                    <li>Kurzus Létrehozása (Oktató)</li>
+                    <li>Kurzus Módosítása (Oktató)</li>
+                    <li>Kurzushoz Csatlakozás (Diák)</li>
+                </ul>
+            </li>
+            <li>Bejegyzések Kezelése
+                <ul>
+                    <li>Feladat Közzététele (Oktató)</li>
+                    <li>Közlemény Közzététele (Oktató)</li>
+                    <li>Bejegyzések Megtekintése (mindkét aktor)</li>
+                </ul>
+            </li>
+            <li>Feladatok Értékelése
+                <ul>
+                    <li>Feladat Beadása (Diák)</li>
+                    <li>Beadott Feladat Értékelése (Oktató)</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<h2><strong>3.2. Aktorok leírása</strong></h2>
+<ul>
+    <li><strong>Oktató:</strong> A rendszer adminisztratív jogosultságokkal rendelkező felhasználója, aki kurzusokat
+        hozhat létre, tananyagot és feladatokat tölthet fel, valamint értékelheti a diákok által beadott munkákat.
+    </li>
+    <li><strong>Diák:</strong> A rendszer alapfelhasználója, aki kurzusokhoz csatlakozhat, megtekintheti a tananyagokat
+        és feladatokat, valamint beadhatja a megoldásait.
+    </li>
+</ul>
+<h2><strong>3.3. Use Case-ek részletes leírása</strong></h2>
+<h3><strong>3.3.1. Use Case: Regisztráció és bejelentkezés</strong>
+</h3>
+<ul>
+    <li><strong>Rövid leírás:</strong> A use case lehetővé teszi a felhasználók számára, hogy fiókot hozzanak létre és
+        bejelentkezzenek a rendszerbe.
+    </li>
+    <li><strong>Aktorok:</strong> Oktató, Diák</li>
+    <li><strong>Prekondíciók:</strong> A felhasználó rendelkezik internetkapcsolattal és egy modern böngészővel.</li>
+    <li><strong>Post kondíciók:</strong> Sikeres regisztráció után a felhasználó be tud jelentkezni a rendszerbe.
+        Sikeres bejelentkezés után a felhasználó a saját vezérlőpultjára jut.
+    </li>
+    <li><strong>Szokásos működés (Main Flow):</strong>
+        <ol>
+            <li>A felhasználó a főoldalon kiválasztja a &quot;Regisztráció&quot; opciót.</li>
+            <li>A rendszer egy űrlapot jelenít meg (név, e-mail cím, jelszó, szerepkör: Diák/Oktató).</li>
+            <li>A felhasználó kitölti az adatokat és elküldi az űrlapot.</li>
+            <li>A rendszer validálja az adatokat és létrehozza a felhasználói fiókot.</li>
+            <li>A rendszer visszaigazolást küld a sikeres regisztrációról.</li>
+            <li>A felhasználó a &quot;Bejelentkezés&quot; opciót választja, megadja e-mail címét és jelszavát.</li>
+            <li>A rendszer ellenőrzi a hitelesítő adatokat és bejelentkezteti a felhasználót.</li>
+        </ol>
+    </li>
+    <li><strong>Alternatív esetek:</strong>
+        <ul>
+            <li>A regisztrációs űrlap adatai érvénytelenek (pl. a jelszó túl rövid). A rendszer hibaüzenetet jelenít
+                meg.
+            </li>
+            <li>Az e-mail cím már regisztrálva van. A rendszer hibaüzenetet jelenít meg.</li>
+        </ul>
+    </li>
+    <li><strong>Kivételes esetek:</strong>
+        <ul>
+            <li>A bejelentkezési adatok helytelenek. A rendszer hibaüzenetet jelenít meg.</li>
+            <li>A szerver nem elérhető. A rendszer hibaüzenetet jelenít meg.</li>
+        </ul>
+    </li>
+</ul>
+<h3><strong>3.3.2. Use Case: Kurzus kezelése</strong></h3>
+<ul>
+    <li><strong>Rövid leírás:</strong> Az oktatók kurzusokat hozhatnak létre, a diákok pedig csatlakozhatnak azokhoz
+        egyedi kód segítségével.
+    </li>
+    <li><strong>Aktorok:</strong> Oktató, Diák</li>
+    <li><strong>Prekondíciók:</strong> A felhasználó be van jelentkezve a rendszerbe.</li>
+    <li><strong>Post kondíciók:</strong>
+        <ul>
+            <li>Az Oktató által létrehozott kurzus megjelenik a kurzusai listájában.</li>
+            <li>A Diák által csatlakozott kurzus megjelenik a kurzusai listájában.</li>
+        </ul>
+    </li>
+    <li><strong>Szokásos működés (Oktató - Kurzus létrehozása):</strong>
+        <ol>
+            <li>Az Oktató a vezérlőpulton a &quot;Kurzus létrehozása&quot; gombra kattint.</li>
+            <li>A rendszer egy űrlapot jelenít meg (kurzus neve, leírása).</li>
+            <li>Az Oktató kitölti az adatokat és elmenti a kurzust.</li>
+            <li>A rendszer létrehozza a kurzust, generál egy egyedi csatlakozási kódot, és megjeleníti a kurzus
+                oldalát.
+            </li>
+        </ol>
+    </li>
+    <li><strong>Szokásos működés (Diák - Kurzushoz csatlakozás):</strong>
+        <ol>
+            <li>A Diák a vezérlőpulton a &quot;Csatlakozás kurzushoz&quot; gombra kattint.</li>
+            <li>A rendszer egy beviteli mezőt jelenít meg a kurzuskód számára.</li>
+            <li>A Diák beírja az Oktatótól kapott kódot.</li>
+            <li>A rendszer validálja a kódot, és ha érvényes, hozzárendeli a diákot a kurzushoz.</li>
+        </ol>
+    </li>
+    <li><strong>Alternatív esetek:</strong> A Diák érvénytelen kurzuskódot ad meg. A rendszer hibaüzenetet jelenít meg.
+    </li>
+</ul>
+<h3><strong>3.3.3. Use Case: Feladat és közlemény kezelése</strong>
+</h3>
+<ul>
+    <li><strong>Rövid leírás:</strong> Az oktatók feladatokat és közleményeket tehetnek közzé a kurzus falán. A diákok
+        ezeket megtekinthetik.
+    </li>
+    <li><strong>Aktorok:</strong> Oktató, Diák</li>
+    <li><strong>Prekondíciók:</strong> A felhasználó be van jelentkezve és egy kurzus oldalán tartózkodik.</li>
+    <li><strong>Post kondíciók:</strong> Az Oktató által létrehozott bejegyzés megjelenik a kurzus falán minden
+        résztvevő számára.
+    </li>
+    <li><strong>Szokásos működés (Oktató - Bejegyzés létrehozása):</strong>
+        <ol>
+            <li>Az Oktató a kurzus falán kiválasztja az &quot;Új feladat&quot; vagy &quot;Új közlemény&quot; opciót.
+            </li>
+            <li>A rendszer egy szerkesztőfelületet jelenít meg (cím, leírás, határidő (feladat esetén),
+                fájlcsatolmány).
+            </li>
+            <li>Az Oktató kitölti a releváns mezőket és közzéteszi a bejegyzést.</li>
+            <li>A rendszer elmenti a bejegyzést és megjeleníti a kurzus falán.</li>
+        </ol>
+    </li>
+    <li><strong>Szokásos működés (Diák - Bejegyzések megtekintése):</strong>
+        <ol>
+            <li>A Diák belép egy kurzus oldalára.</li>
+            <li>A rendszer listázza a kurzus falán található összes közleményt és feladatot, időrendi sorrendben.</li>
+        </ol>
+    </li>
+</ul>
+<h3><strong>3.3.4. Use Case: Feladat beadása és értékelése</strong>
+</h3>
+<ul>
+    <li><strong>Rövid leírás:</strong> A diákok beadhatják a megoldásaikat a feladatokhoz, az oktatók pedig értékelhetik
+        azokat.
+    </li>
+    <li><strong>Aktorok:</strong> Oktató, Diák</li>
+    <li><strong>Prekondíciók:</strong> A Diák egy kurzus tagja, ahol van egy aktív feladat. Az Oktató a kurzus
+        tulajdonosa.
+    </li>
+    <li><strong>Post kondíciók:</strong>
+        <ul>
+            <li>A Diák beadott munkája rögzítésre kerül a rendszerben.</li>
+            <li>Az Oktató által adott értékelés megjelenik a Diák számára.</li>
+        </ul>
+    </li>
+    <li><strong>Szokásos működés (Diák - Feladat beadása):</strong>
+        <ol>
+            <li>A Diák a kurzus falán kiválaszt egy feladatot.</li>
+            <li>A feladat oldalán a &quot;Megoldás beadása&quot; opciót választja.</li>
+            <li>A rendszer lehetőséget ad szöveges válasz írására vagy fájl(ok) feltöltésére.</li>
+            <li>A Diák feltölti/megírja a megoldást és a &quot;Beadás&quot; gombra kattint.</li>
+            <li>A rendszer rögzíti a beadást és az időbélyeget.</li>
+        </ol>
+    </li>
+    <li><strong>Szokásos működés (Oktató - Értékelés):</strong>
+        <ol>
+            <li>Az Oktató a kurzusban kiválaszt egy feladatot.</li>
+            <li>A rendszer listázza a feladathoz tartozó beadott munkákat.</li>
+            <li>Az Oktató kiválaszt egy diákot, megtekinti a beadott munkáját.</li>
+            <li>Az Oktató pontszámot és szöveges értékelést ad a munkára.</li>
+            <li>A rendszer elmenti az értékelést, és értesítést küld a Diáknak.</li>
+        </ol>
+    </li>
+</ul>
+<h1><strong>4. Használhatóság</strong></h1>
+<p><em>Usability</em></p>
+<ul>
+    <li>A felhasználói felületnek letisztultnak, intuitívnak és a Google Classroomhoz hasonlóan könnyen kezelhetőnek
+        kell lennie.
+    </li>
+    <li>A rendszernek reszponzívnak kell lennie, biztosítva a zökkenőmentes használatot asztali gépeken, táblagépeken és
+        okostelefonokon is.
+    </li>
+    <li>Egy új felhasználónak (mind diák, mind oktató) legfeljebb 15 perc alatt képesnek kell lennie elsajátítani az
+        alapvető funkciókat (kurzushoz csatlakozás/létrehozás, feladat megtekintése/közzététele).
+    </li>
+    <li>A rendszernek egységes vizuális megjelenést és navigációs sémát kell követnie az összes oldalon.</li>
+</ul>
+<h1><strong>5. Megbízhatóság</strong></h1>
+<p><em>Reliability</em></p>
+<ul>
+    <li><strong>Rendelkezésre állás:</strong> A rendszernek 99.5%-os rendelkezésre állást kell biztosítania a tanítási
+        időszakokban. A tervezett karbantartásokat tanítási időn kívül kell végezni.
+    </li>
+    <li><strong>MTBF (Mean Time Between Failures):</strong> A kritikus hibák (pl. adatvesztés, szolgáltatásleállás)
+        között eltelt átlagos időnek legalább 1000 üzemórának kell lennie.
+    </li>
+    <li><strong>Adatintegritás:</strong> A rendszernek biztosítania kell a beadott feladatok, értékelések és
+        felhasználói adatok sértetlenségét és konzisztenciáját. Hiba esetén az adatbázis-tranzakciókat vissza kell
+        görgetni.
+    </li>
+</ul>
+<h1><strong>6. Teljesítmény</strong></h1>
+<p><em>Performance</em></p>
+<ul>
+    <li><strong>Válaszidő:</strong> A felhasználói interakciókra (pl. oldalbetöltés, gombnyomás) a rendszernek 2
+        másodpercen belül kell válaszolnia normál terhelés mellett.
+    </li>
+    <li><strong>Kapacitás:</strong> A rendszernek képesnek kell lennie egyidejűleg legalább 200 felhasználó
+        kiszolgálására jelentős teljesítménycsökkenés nélkül.
+    </li>
+    <li><strong>Fájlkezelés:</strong> Egy legfeljebb 100 MB méretű fájl feltöltésének 10 Mbps sávszélesség mellett 2
+        percen belül be kell fejeződnie.
+    </li>
+</ul>
+<h1><strong>7. Támogatottság</strong></h1>
+<p><em>Supportability</em></p>
+<ul>
+    <li>A forráskódnak követnie kell az iparági kódolási konvenciókat (pl. Airbnb Style Guide for JavaScript).</li>
+    <li>A rendszernek részletes naplózást kell végeznie a szerveroldali eseményekről és hibákról a hibakeresés
+        megkönnyítése érdekében.
+    </li>
+    <li>Az API végpontokat OpenAPI (Swagger) specifikációval kell dokumentálni a karbantarthatóság és a jövőbeli
+        integrációk támogatása érdekében.
+    </li>
+</ul>
+<h1><strong>8. Tervezési korlátozások</strong></h1>
+<p><em>Design Constraints</em></p>
+<ul>
+    <li><strong>Backend:</strong> Node.js futtatási környezet, Express.js keretrendszerrel.</li>
+    <li><strong>Frontend:</strong> React keretrendszer, TypeScript programozási nyelvvel.</li>
+    <li><strong>Adatbázis:</strong> PostgreSQL relációs adatbázis-kezelő.</li>
+    <li><strong>Architektúra:</strong> A rendszernek RESTful API architektúrát kell követnie a kliens- és szerveroldal
+        szétválasztása érdekében.
+    </li>
+    <li><strong>Authentikáció:</strong> JSON Web Tokens (JWT) alapú authentikációt kell megvalósítani.</li>
+</ul>
+<h1><strong>9. On-line dokumentáció és Help rendszer</strong></h1>
+<p><em>Online User Documentation and Help System Requirements</em></p>
+<p>A rendszernek intuitívnak és könnyen használhatónak kell lennie mind az oktatók, mind a diákok számára, minimalizálva
+    a tanulási időt. Ha külső segítség szükséges, annak konzisztensnek és azonnal elérhetőnek kell lennie. Ez a
+    támogatás beépített, célzott segítő mechanizmusok (pl. tooltip-ek) és egy hatékonyan kereshető, minimális tartalmú
+    online súgó formájában valósul meg.</p>
+<h1><strong>10. Felhasznált kész komponensek</strong></h1>
+<p><em>Third-party Components</em></p>
+<p>A projekt az alábbi nyílt forráskódú komponensekre épül, melyek felhasználási feltételeit be kell tartani:</p>
+<ul>
+    <li>React.js (MIT License)</li>
+    <li>Node.js (MIT License)</li>
+    <li>Express.js (MIT License)</li>
+    <li>PostgreSQL (PostgreSQL License)</li>
+    <li>További npm csomagok, melyek licencét a projekt dokumentációjában kell listázni.</li>
+</ul>
+<h1><strong>11. Interfészek</strong></h1>
+<p><em>Interfaces</em></p>
+<ul>
+    <li><strong>Felhasználói interfész:</strong> Modern, reszponzív webes felület, amely kompatibilis a legújabb Google
+        Chrome, Mozilla Firefox és Microsoft Edge böngészőkkel.
+    </li>
+    <li><strong>Szoftver interfész:</strong> A kliens és a szerver között egy jól definiált RESTful API biztosítja a
+        kommunikációt JSON formátumú adatokkal.
+    </li>
+    <li><strong>Kommunikációs interfész:</strong> A kommunikáció titkosított HTTPS protokollon keresztül történik.</li>
+</ul>
+<h1><strong>12. Alkalmazott szabványok</strong></h1>
+<p><em>Applicable Standards</em></p>
+<ul>
+    <li><strong>Webes szabványok:</strong> HTML5, CSS3, ECMAScript 2021.</li>
+    <li><strong>Adatvédelmi előírások:</strong> A rendszernek meg kell felelnie az EU Általános Adatvédelmi Rendeletének
+        (GDPR) alapelveinek a felhasználói adatok kezelése során.
+    </li>
+    <li><strong>Kódolási szabványok:</strong> A projektnek követnie kell a választott technológiákhoz tartozó közösségi
+        stílusútmutatókat.
+    </li>
+</ul>
+<h1><strong>13. Mellékletek</strong></h1>
+<p><em>Appendix</em></p>
+<p><em>Jelenleg nincsenek mellékletek.</em></p>
+</body>
