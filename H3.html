@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>H2 - Bevezetés - V1.2</title>
+    <title>H3</title>
 </head>
 <body>
-<h1><strong>Szoftver Követelmény Specifikáció</strong></h1>
+<h1><strong>H3</strong></h1>
+<h1><strong>1. Szoftver Követelmény Specifikáció</strong></h1>
 <p><strong>Projekt címe:</strong> Google Classroom stílusú oktatási platform</p>
 <p><strong>Csapatnév:</strong> BitBarátok</p>
 <p><strong>Dokumentum verzió:</strong> 1.0</p>
@@ -52,6 +53,18 @@
         <td style="text-align:left">0.5</td>
         <td style="text-align:left">Utolsó pontok (9-13.)</td>
         <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 13.</td>
+        <td style="text-align:left">0.6</td>
+        <td style="text-align:left">Szótár</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 13.</td>
+        <td style="text-align:left">0.7</td>
+        <td style="text-align:left">Felhasználói dokumentáció</td>
+        <td style="text-align:left">Vaszily Noel Péter</td>
     </tr>
     <tr>
         <td style="text-align:left">2025. 11. 13.</td>
@@ -412,4 +425,146 @@
 <h1><strong>13. Mellékletek</strong></h1>
 <p><em>Appendix</em></p>
 <p><em>Jelenleg nincsenek mellékletek.</em></p>
+<hr>
+<hr>
+<h1><strong>2. Szótár</strong></h1>
+<p><strong>Projekt címe:</strong> Google Classroom stílusú oktatási platform</p>
+<p><strong>Dokumentum verzió:</strong> 1.1 (A Vízió dokumentumból kiemelve és bővítve)</p>
+<p><strong>Dátum:</strong> 2025. november 13.</p>
+<hr>
+<p>Ez a dokumentum a projektben használt kulcsfontosságú fogalmakat és azok definícióit tartalmazza az egységes
+    értelmezés érdekében.</p>
+<ul>
+    <li><p><strong>Aktor (Actor):</strong> A rendszert használó személy vagy külső rendszer, amely interakcióba lép a
+        szoftverrel. A projektben két fő aktor van: az <em>Oktató</em> és a <em>Diák</em>.</p>
+    </li>
+    <li><p><strong>Bejegyzés (Post):</strong> A kurzus falán megjelenő bármilyen tartalmi elem. Két fő típusa van: a
+        <em>Közlemény</em> és a <em>Feladat</em>.</p>
+    </li>
+    <li><p><strong>Diák (Student):</strong> A rendszer azon felhasználója, aki kurzusokhoz csatlakozik, hozzáfér a
+        tananyagokhoz, és feladatokat ad be.</p>
+    </li>
+    <li><p><strong>Értékelés (Grade):</strong> Az a folyamat, amely során az Oktató pontszámmal és/vagy szöveges
+        visszajelzéssel látja el a Diák által beadott feladatot.</p>
+    </li>
+    <li><p><strong>Feladat (Assignment):</strong> Egy speciális típusú <em>Bejegyzés</em>, amelyhez beadási határidő és
+        értékelési lehetőség tartozik. A diákoknak erre kell megoldást beküldeniük.</p>
+    </li>
+    <li><p><strong>JWT (JSON Web Token):</strong> Egy iparági szabvány (RFC 7519) a felek közötti információ
+        biztonságos, kompakt és önálló átvitelére. A projektben a felhasználói authentikáció és autorizáció
+        megvalósítására szolgál.</p>
+    </li>
+    <li><p><strong>Kurzus (Course):</strong> Az oktatás központi digitális egysége, amely egy adott tantárgyhoz vagy
+        témakörhöz kapcsolódik. Az Oktatók ezen keresztül szervezik a tananyagot, osztják ki a feladatokat és
+        kommunikálnak a Diákokkal.</p>
+    </li>
+    <li><p><strong>Kurzuskód (Course Code):</strong> Egy egyedi, véletlenszerűen generált karaktersorozat, amelyet a
+        kurzust létrehozó Oktató oszt meg a diákokkal. Ennek segítségével tudnak a Diákok csatlakozni a kurzushoz.</p>
+    </li>
+    <li><p><strong>Közlemény (Announcement):</strong> Egy általános célú <em>Bejegyzés</em> a kurzus falán, amely
+        tájékoztató jellegű információkat tartalmaz (pl. emlékeztetők, segédanyagok linkjei). Nem igényel beadandót a
+        diákoktól.</p>
+    </li>
+    <li><p><strong>Oktató (Instructor):</strong> A rendszer adminisztratív jogosultságokkal rendelkező felhasználója,
+        aki kurzusokat hoz létre és kezel, feladatokat ír ki, és értékeli a beérkezett diák munkákat.</p>
+    </li>
+    <li><p><strong>RESTful API (Representational State Transfer Application Programming Interface):</strong> Egy
+        architekturális stílus szoftverrendszerek hálózaton keresztüli kommunikációjára. A projektben a kliensoldali
+        (frontend) és a szerveroldali (backend) alkalmazás közötti adatcserét definiálja.</p>
+    </li>
+    <li><p><strong>Vezérlőpult (Dashboard):</strong> Az a kezdőoldal, amelyet a felhasználó a bejelentkezés után lát.
+        Itt áttekintheti a kurzusait, a közelgő határidőket és a legutóbbi értesítéseket.</p>
+    </li>
+</ul>
+<hr>
+<hr>
+<h1><strong>3. Felhasználói Dokumentáció (v1.0)</strong></h1>
+<p><strong>Projekt címe:</strong> Google Classroom stílusú oktatási platform</p>
+<p><strong>Dokumentum verzió:</strong> 1.0</p>
+<p><strong>Dátum:</strong> 2025. november 13.</p>
+<hr>
+<h2><strong>1. Bevezetés</strong></h2>
+<p>Üdvözöljük az új oktatási platform felhasználói kézikönyvében! Ez az útmutató azért készült, hogy segítséget nyújtson
+    a rendszer alapvető funkcióinak megismerésében és hatékony használatában. A dokumentum külön részletezi a funkciókat
+    az <strong>Oktatók</strong> és a <strong>Diákok</strong> számára.</p>
+<h2><strong>2. Első lépések</strong></h2>
+<p><strong>2.1. Regisztráció</strong></p>
+<p>A platform használatához először létre kell hoznia egy felhasználói fiókot.</p>
+<ol>
+    <li>Nyissa meg az alkalmazás főoldalát.</li>
+    <li>Kattintson a <strong>&quot;Regisztráció&quot;</strong> gombra.</li>
+    <li>Töltse ki a megjelenő űrlapot: adja meg a nevét, érvényes e-mail címét és egy biztonságos jelszót.</li>
+    <li>Válassza ki a szerepkörét: <strong>Oktató</strong> vagy <strong>Diák</strong>.</li>
+    <li>Fogadja el a felhasználási feltételeket, majd kattintson a <strong>&quot;Fiók létrehozása&quot;</strong> gombra.
+    </li>
+</ol>
+<p><strong>2.2. Bejelentkezés</strong></p>
+<p>A sikeres regisztráció után bármikor bejelentkezhet a fiókjába.</p>
+<ol>
+    <li>A főoldalon kattintson a <strong>&quot;Bejelentkezés&quot;</strong> gombra.</li>
+    <li>Adja meg a regisztrációkor használt e-mail címét és jelszavát.</li>
+    <li>Kattintson a <strong>&quot;Belépés&quot;</strong> gombra. Sikeres bejelentkezés után a személyes Vezérlőpultjára
+        kerül.
+    </li>
+</ol>
+<h2><strong>3. Útmutató Oktatók számára</strong></h2>
+<p><strong>3.1. Új kurzus létrehozása</strong></p>
+<ol>
+    <li>A Vezérlőpulton kattintson az <strong>&quot;Új kurzus létrehozása&quot;</strong> gombra.</li>
+    <li>Adja meg a kurzus nevét (pl. &quot;Szoftvertechnológia 2025&quot;) és egy rövid leírást.</li>
+    <li>Kattintson a <strong>&quot;Létrehozás&quot;</strong> gombra.</li>
+    <li>A rendszer automatikusan létrehozza a kurzus oldalát, ahol egy egyedi <strong>Kurzuskódot</strong> talál. Ezt a
+        kódot kell megosztania a diákokkal, hogy csatlakozni tudjanak.
+    </li>
+</ol>
+<p><strong>3.2. Közlemény közzététele</strong></p>
+<ol>
+    <li>Lépjen be a kívánt kurzus oldalára.</li>
+    <li>A kurzus falán kattintson az <strong>&quot;Új közlemény&quot;</strong> mezőbe.</li>
+    <li>Írja be a közlemény szövegét. Szükség esetén csatolhat fájlokat (pl. PDF, DOCX) vagy linkeket is.</li>
+    <li>Kattintson a <strong>&quot;Közzététel&quot;</strong> gombra.</li>
+</ol>
+<p><strong>3.3. Feladat kiírása</strong></p>
+<ol>
+    <li>A kurzus oldalán válassza az <strong>&quot;Új feladat&quot;</strong> opciót.</li>
+    <li>Adja meg a feladat címét és a részletes leírást.</li>
+    <li>Állítsa be a <strong>beadási határidőt</strong> a naptár segítségével.</li>
+    <li>Szükség esetén csatoljon segédanyagokat.</li>
+    <li>Kattintson a <strong>&quot;Feladat kiírása&quot;</strong> gombra.</li>
+</ol>
+<p><strong>3.4. Beadott munkák értékelése</strong></p>
+<ol>
+    <li>Lépjen be a kurzus oldalára, és válassza ki azt a feladatot, amelyet értékelni szeretne.</li>
+    <li>A feladat oldalán megjelenik a beadott munkák listája diákok szerint.</li>
+    <li>Válasszon ki egy diákot a beadott munkájának megtekintéséhez.</li>
+    <li>Adjon meg egy pontszámot és/vagy írjon szöveges visszajelzést a számára fenntartott mezőbe.</li>
+    <li>Kattintson az <strong>&quot;Értékelés mentése&quot;</strong> gombra. A diák értesítést kap az eredményről.</li>
+</ol>
+<h2><strong>4. Útmutató Diákok számára</strong></h2>
+<p><strong>4.1. Csatlakozás kurzushoz</strong></p>
+<ol>
+    <li>A Vezérlőpulton kattintson a <strong>&quot;Csatlakozás kurzushoz&quot;</strong> gombra.</li>
+    <li>A megjelenő mezőbe írja be az oktatójától kapott <strong>Kurzuskódot</strong>.</li>
+    <li>Kattintson a <strong>&quot;Csatlakozás&quot;</strong> gombra. Ha a kód érvényes, a kurzus megjelenik a kurzusai
+        listájában.
+    </li>
+</ol>
+<p><strong>4.2. Feladatok és közlemények megtekintése</strong></p>
+<p>Lépjen be bármelyik kurzusába. A kurzus falán időrendi sorrendben látni fogja az oktató által közzétett összes
+    közleményt és feladatot. A közelgő határidőket a rendszer külön kiemeli.</p>
+<p><strong>4.3. Feladat beadása</strong></p>
+<ol>
+    <li>A kurzus falán kattintson arra a feladatra, amelyet be szeretne adni.</li>
+    <li>Olvassa el a feladat leírását.</li>
+    <li>A beadási szekcióban lehetősége van szöveget beírni vagy fájlt/fájlokat feltölteni a számítógépéről.</li>
+    <li>Miután csatolta a megoldását, kattintson a <strong>&quot;Beadás&quot;</strong> gombra. A beadás véglegesítésére
+        a rendszer rákérdezhet.
+    </li>
+</ol>
+<p><strong>4.4. Értékelések megtekintése</strong></p>
+<p>Miután az oktató értékelte a beadott munkáját, erről értesítést kap.</p>
+<ol>
+    <li>Lépjen be a kurzusba és válassza ki az adott feladatot.</li>
+    <li>A beadási szekció mellett látni fogja a kapott pontszámot és az oktató szöveges visszajelzését.</li>
+</ol>
 </body>
