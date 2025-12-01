@@ -153,8 +153,52 @@
 </p>
 <h2><strong>3.4. Operációk azonosítása</strong></h2>
 <p>
-    <img src="./" alt="">
+A dinamikus (szekvencia- és állapotdiagramok), valamint a funkcionális modell (aktivitásdiagram)
+elemzése alapján az osztályokhoz rendeljük azokat az operációkat, amelyek a rendszer működéséhez szükségesek.
+Az operációk az osztályok felelősségéhez kapcsolódnak, és megjelennek a végleges osztálydiagramon (3.5).
 </p>
+
+<p>
+Az 1. alrendszer (Felhasználókezelési alrendszer) esetében a következő operációk kerültek azonosításra:
+</p>
+
+<h3>Felhasználó osztály operációi</h3>
+
+<p>A Felhasználó bázisosztály felel az alap hitelesítési és fiókkezelési funkciókért. A dinamikus modell alapján az alábbi operációk szükségesek:</p>
+
+<ul>
+    <li><b>regisztracio()</b> – A felhasználó regisztrációját végzi. Ellenőrzi a megadott adatokat, majd meghívja a jelszó hash-elést, és új Felhasználó objektumot hoz létre.</li>
+    <li><b>bejelentkezes()</b> – A hitelesítési folyamatot valósítja meg. A felhasználó email és jelszó alapján kerül azonosításra, és siker esetén hitelesített állapotba kerül.</li>
+    <li><b>jelszoModositas()</b> – Lehetővé teszi a felhasználó számára, hogy a tárolt jelszó hash frissítésével új jelszót állítson be.</li>
+</ul>
+
+<h3>Oktató osztály operációi</h3>
+
+<p>Az Oktató a kurzusok kezelésével kapcsolatos műveletekért felel. A funkcionális modell és az SRS alapján a következő operációk szükségesek:</p>
+
+<ul>
+    <li><b>kurzusLetrehozasa()</b> – Új kurzus létrehozását kezdeményezi. Az Oktató mint tulajdonos kerül hozzákapcsolásra a kurzusobjektumhoz.</li>
+    <li><b>feladatKiirasa()</b> – Új feladatot hoz létre a kurzusban. A funkció a feladat paramétereinek megadását, majd a tárolását foglalja magában.</li>
+    <li><b>ertekeles()</b> – A beadott feladat értékelésére szolgál. Az oktató pontszámot és szöveges visszajelzést ad.</li>
+</ul>
+
+<h3>Diák osztály operációi</h3>
+
+<p>A Diák a kurzusokhoz kapcsolódó részvételért és feladatleadásért felel. A dinamikus modellből és a funkcionális folyamatokból az alábbi operációk azonosíthatók:</p>
+
+<ul>
+    <li><b>csatlakozasKurzushoz()</b> – A diák egy meglévő kurzushoz csatlakozik kurzuskód vagy jóváhagyás alapján.</li>
+    <li><b>feladatBeadasa()</b> – A feladat leadásának folyamatát kezeli. A diák feltölti a megoldást, amely tárolásra kerül.</li>
+</ul>
+
+<h3>A döntések összefoglalása</h3>
+
+<ul>
+    <li>A működés helye ott került meghatározásra, ahol az adott felelősség található (például kurzus létrehozása az Oktatóhoz tartozik).</li>
+    <li>A Felhasználó osztály tartalmazza a közös hitelesítési funkciókat, mivel az Oktató és a Diák is ugyanazt a regisztrációs és bejelentkezési logikát használja.</li>
+    <li>A dinamikus és funkcionális diagramok alapján minden szükséges operáció megjelent az osztályokban, így az osztálydiagram (3.5) funkcionálisan teljes.</li>
+</ul>
+
 <h2><strong>3.5. Az analízis modell osztálydiagramja</strong></h2>
 <p>
     <img src="./3.5 – Végleges osztálydiagram.png" alt="">
