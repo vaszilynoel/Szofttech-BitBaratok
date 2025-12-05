@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitBarátok</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .sidebar-item:hover {
+            background-color: #f1f5f9;
+        }
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <header class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <button class="p-2 rounded-lg hover:bg-gray-100 md:hidden" id="mobileMenuBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <h1 class="text-xl font-semibold text-gray-800">Classroom</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button class="p-2 rounded-full hover:bg-gray-100" id="plusBtn">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+            </button>
+            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                T
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <aside class="w-64 bg-white border-r border-gray-200 min-h-screen p-4 hidden md:block" id="sidebar">
+            <nav class="space-y-2">
+                <div class="sidebar-item p-3 rounded-lg cursor-pointer flex items-center space-x-3 text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <span>Tanfolyamok</span>
+                </div>
+                <div class="sidebar-item p-3 rounded-lg cursor-pointer flex items-center space-x-3 text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Naptár</span>
+                </div>
+                <div class="sidebar-item p-3 rounded-lg cursor-pointer flex items-center space-x-3 text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Házi feladatok</span>
+                </div>
+                <div class="sidebar-item p-3 rounded-lg cursor-pointer flex items-center space-x-3 text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span>Tanulók</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Üdvözlünk!</h2>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition" id="createCourseBtn">
+                        Tanfolyam létrehozása
+                    </button>
+                    <button class="bg-white text-gray-700 px-6 py-3 rounded-lg font-medium border border-gray-300 hover:bg-gray-50 transition" id="joinCourseBtn">
+                        Csatlakozás kóddal
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="courseGrid">
+                <div class="course-card bg-white rounded-lg shadow-md p-6 cursor-pointer border-t-4 border-red-400" data-course="1">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Webprogramozás</h3>
+                            <p class="text-gray-600 text-sm">10.A osztály</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">React, HTML, CSS, JavaScript alapok</p>
+                    <div class="text-xs text-gray-500">15 tanuló</div>
+                </div>
+
+                <div class="course-card bg-white rounded-lg shadow-md p-6 cursor-pointer border-t-4 border-blue-400" data-course="2">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Adatbázis kezelés</h3>
+                            <p class="text-gray-600 text-sm">11.B osztály</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">SQL, MySQL, PostgreSQL</p>
+                    <div class="text-xs text-gray-500">22 tanuló</div>
+                </div>
+
+                <div class="course-card bg-white rounded-lg shadow-md p-6 cursor-pointer border-t-4 border-green-400" data-course="3">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Programozás alapok</h3>
+                            <p class="text-gray-600 text-sm">9.C osztály</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Python, algoritmusok, logika</p>
+                    <div class="text-xs text-gray-500">18 tanuló</div>
+                </div>
+
+                <div class="course-card bg-white rounded-lg shadow-md p-6 cursor-pointer border-t-4 border-purple-400" data-course="4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-808">Digitális művészet</h3>
+                            <p class="text-gray-600 text-sm">Művészeti osztály</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Photoshop, Illustrator, design alapok</p>
+                    <div class="text-xs text-gray-500">12 tanuló</div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Közelgő házi feladatok</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            <div>
+                                <p class="font-medium text-gray-800">React komponensek házi feladat</p>
+                                <p class="text-sm text-gray-600">Webprogramozás – 10.A</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">Pár napja</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div>
+                                <p class="font-medium text-gray-800">Adatbázis tervezés projekt</p>
+                                <p class="text-sm text-gray-600">Adatbázis kezelés - 11.B</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">Holnap</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <div>
+                                <p class="font-medium text-gray-800">Ciklusok gyakorlása</p>
+                                <p class="text-sm text-gray-600">Programozás alapok - 9.C</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">3 nap múlva</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50" id="courseModal">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Tanfolyam részletei</h3>
+                <button class="text-gray-400 hover:text-gray-600" id="closeModal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="courseDetails" class="space-y-4">
+            </div>
+            <div class="flex space-x-3 mt-6">
+                <button class="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Feladatok</button>
+                <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300">Tanulók</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50" id="createCourseModal">
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Új tanfolyam létrehozása</h3>
+                <button class="text-gray-400 hover:text-gray-600" id="closeCreateModal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="createCourseForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanfolyam neve</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Pl. Webprogramozás" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Osztály</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Pl. 10.A" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Leírás</label>
+                    <textarea class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Tanfolyam leírása..."></textarea>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="button" class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300" id="cancelCreate">Mégse</button>
+                    <button type="submit" class="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Létrehozás</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const courseData = {
+            1: {
+                name: "Webprogramozás",
+                class: "10.A osztály",
+                description: "React, HTML, CSS, JavaScript alapok",
+                students: 15,
+                assignments: 3,
+                upcoming: "React komponensek házi feladat",
+                color: "red"
+            },
+            2: {
+                name: "Adatbázis kezelés",
+                class: "11.B osztály",
+                description: "SQL, MySQL, PostgreSQL",
+                students: 22,
+                assignments: 5,
+                upcoming: "Adatbázis tervezés projekt",
+                color: "blue"
+            },
+            3: {
+                name: "Programozás alapok",
+                class: "9.C osztály",
+                description: "Python, algoritmusok, logika",
+                students: 18,
+                assignments: 4,
+                upcoming: "Ciklusok gyakorlása",
+                color: "green"
+            },
+            4: {
+                name: "Digitális művészet",
+                class: "Művészeti osztály",
+                description: "Photoshop, Illustrator, design alapok",
+                students: 12,
+                assignments: 2,
+                upcoming: "Logo tervezés projekt",
+                color: "purple"
+            }
+        };
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+
+        const courseModal = document.getElementById('courseModal');
+        const courseDetails = document.getElementById('courseDetails');
+        const closeModal = document.getElementById('closeModal');
+        const courseCards = document.querySelectorAll('[data-course]');
+
+        courseCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const courseId = card.dataset.course;
+                const course = courseData[courseId];
+                
+                courseDetails.innerHTML = `
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-16 h-16 bg-${course.color}-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-8 h-8 text-${course.color}-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-800">${course.name}</h4>
+                            <p class="text-gray-600">${course.class}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">${course.description}</p>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-gray-600">Tanulók száma</div>
+                            <div class="font-semibold text-gray-800">${course.students} fő</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-gray-600">Aktív feladatok</div>
+                            <div class="font-semibold text-gray-800">${course.assignments} db</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="text-sm font-medium text-gray-700 mb-2">Következő határidő:</div>
+                        <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded-lg">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-sm text-gray-800">${course.upcoming}</span>
+                        </div>
+                    </div>
+                `;
+                courseModal.classList.add('show');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            courseModal.classList.remove('show');
+        });
+
+        const createCourseModal = document.getElementById('createCourseModal');
+        const createCourseBtn = document.getElementById('createCourseBtn');
+        const closeCreateModal = document.getElementById('closeCreateModal');
+        const cancelCreate = document.getElementById('cancelCreate');
+        const createCourseForm = document.getElementById('createCourseForm');
+
+        createCourseBtn.addEventListener('click', () => {
+            createCourseModal.classList.add('show');
+        });
+
+        closeCreateModal.addEventListener('click', () => {
+            createCourseModal.classList.remove('show');
+        });
+
+        cancelCreate.addEventListener('click', () => {
+            createCourseModal.classList.remove('show');
+        });
+
+        createCourseForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            createCourseModal.classList.remove('show');
+            
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            notification.textContent = 'Tanfolyam sikeresen létrehozva!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        });
+
+        courseModal.addEventListener('click', (e) => {
+            if (e.target === courseModal) {
+                courseModal.classList.remove('show');
+            }
+        });
+
+        createCourseModal.addEventListener('click', (e) => {
+            if (e.target === createCourseModal) {
+                createCourseModal.classList.remove('show');
+            }
+        });
+
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                sidebarItems.forEach(i => i.classList.remove('bg-blue-50'));
+                item.classList.add('bg-blue-50');
+            });
+        });
+
+        document.getElementById('plusBtn').addEventListener('click', () => {
+            createCourseModal.classList.add('show');
+        });
+
+        document.getElementById('joinCourseBtn').addEventListener('click', () => {
+            const code = prompt('Add meg a csatlakozási kódot:');
+            if (code) {
+                alert(`Csatlakozás a "${code}" kóddal...`);
+            }
+        });
+    </script>
+</body>
+</html>

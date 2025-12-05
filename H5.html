@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>H5</title>
+</head>
+<body>
+<p style="margin-bottom: 0cm;" align="left" lang="hu-HU"><font style="font-size: 22pt;" size="6">Csoport
+    neve: BitBarátok</font></p>
+<p style="margin-bottom: 0cm;" align="left"><font style="font-size: 22pt;" size="6">Feladat
+    sorszáma: H5</font></p>
+<p style="margin-bottom: 0cm;" align="left"><font style="font-size: 22pt;" size="6">Feladat
+    címe: OMT objektum tervezési fázisa</font></p>
+<p style="margin-bottom: 0cm;" align="center" lang="hu-HU"><font style="font-size: 26pt;" size="6"><b><span
+        lang="en-US">H5</span></b></font></p>
+<br>
+<p style="margin-bottom: 0cm;" align="center" lang="hu-HU"><font size="4">Gyakorlatvezető::</font></p>
+<p style="margin-bottom: 0cm;" align="center" lang="hu-HU"><font style="font-size: 22pt;" size="6">DR. ÁRVAI
+    LÁSZLÓ</font></p>
+<p style="margin-bottom: 0cm;" align="left" lang="hu-HU"><font style="font-size: 16pt;" size="4">Csoport
+    tagok:</font></p>
+<table border="1" cellpadding="4" cellspacing="3" width="90%">
+    <colgroup>
+        <col width="118">
+        <col width="264">
+    </colgroup>
+    <tbody>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">Vaszily Noel Péter</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">noelvaszily@gmail.com</font></p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">Tóth Zsombor Gábor </font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3"></font></p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">Fodor Marcell</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">fdrmarcell@gmail.com</font></p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">Szabó Zsombor</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">zsomborszabo960@gmail.com</font></p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">Petercsák Regő</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3"></font></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<h1 id="-1-objektumtervez-si-s-implement-ci-s-dokumentum-"><strong>1. Objektumtervezési és Implementációs
+    Dokumentum</strong></h1>
+<h2 id="-1-rendszervez-rl-s-kidolgoz-sa-"><strong>1. Rendszervezérlés kidolgozása</strong></h2>
+<p>A rendszerünk egy <strong>kliens-szerver architektúrára</strong> épül, ahol a vezérlés eseményvezérelt (Event-Driven)
+    módon valósul meg a kliens oldalon, és kérés-válasz (Request-Response) alapon a szerver oldalon.</p>
+<ul>
+    <li><p><strong>Passzív objektumok (Entitások):</strong> Ezek az objektumok tárolják az adatokat, önálló
+        életciklussal nem rendelkeznek, csak vezérlő objektumok hatására változnak.</p>
+        <ul>
+            <li><em>Példák:</em> <code>User</code> (Felhasználó), <code>Course</code> (Kurzus), <code>Assignment</code>
+                (Feladat), <code>Submission</code> (Beadás).
+            </li>
+            <li><em>Megvalósítás:</em> Adatbázis modellek (PostgreSQL táblák) és a hozzájuk tartozó ORM osztályok
+                (Sequelize/TypeORM entitások).
+            </li>
+        </ul>
+    </li>
+    <li><p><strong>Vezérlő objektumok (Controllers):</strong> Ezek irányítják a folyamatokat, fogadják a felhasználói
+        inputot és manipulálják a passzív objektumokat.</p>
+        <ul>
+            <li><em>Példák:</em> <code>AuthController</code> (Bejelentkezés vezérlése), <code>CourseController</code>
+                (Kurzus létrehozás/lekérdezés), <code>SubmissionController</code> (Beadás kezelése).
+            </li>
+            <li><em>Láthatóság és Üzenetváltás:</em> A kliens HTTP kéréseket (GET, POST, PUT, DELETE) küld a szervernek.
+                A szerveren a <code>Router</code> objektumok irányítják a kérést a megfelelő <code>Controller</code>-hez.
+                A Controller meghívja a <code>Service</code> réteget, ami eléri az adatbázist.
+            </li>
+        </ul>
+    </li>
+    <li><p><strong>Aktív objektumok:</strong> A rendszerben a <code>Server</code> példány (Node.js processz) tekinthető
+        aktív objektumnak, amely folyamatosan fut és figyeli a bejövő kéréseket (Event Loop).</p>
+    </li>
+</ul>
+<h2 id="-2-oszt-lyok-k-z-tti-kapcsolatok-implement-l-sa-"><strong>2. Osztályok közötti kapcsolatok
+    implementálása</strong></h2>
+<p>Az analízis fázisban meghatározott kapcsolatokat az alábbi technikai megoldásokkal implementáljuk a relációs
+    adatbázisban és a kódban:</p>
+<ul>
+    <li><strong>1:N kapcsolat (pl. Kurzus - Feladat):</strong>
+        <ul>
+            <li><em>Adatbázis:</em> A <code>Posts</code> táblában (ahol a type=&#39;assignment&#39;) elhelyezünk egy
+                <code>course_id</code> idegen kulcsot (Foreign Key).
+            </li>
+            <li><em>Objektum szint:</em> A <code>Course</code> objektum tartalmazni fog egy <code>posts</code>
+                tömböt/listát. A betöltés &quot;Lazy Loading&quot; vagy &quot;Eager Loading&quot; stratégiával történik
+                az ORM segítségével.
+            </li>
+        </ul>
+    </li>
+    <li><strong>M:N kapcsolat (pl. Diák - Kurzus):</strong>
+        <ul>
+            <li><em>Adatbázis:</em> Egy kapcsolótáblát (<code>CourseMemberships</code>) használunk, amely tartalmazza a
+                <code>user_id</code> és <code>course_id</code> párokat, valamint a szerepkört (<code>role</code>).
+            </li>
+            <li><em>Objektum szint:</em> A <code>Student</code> objektumnak van egy <code>enrolledCourses</code>
+                listája, a <code>Course</code> objektumnak pedig egy <code>students</code> listája.
+            </li>
+        </ul>
+    </li>
+    <li><strong>Öröklődés (pl. Bejegyzés -&gt; Feladat):</strong>
+        <ul>
+            <li><em>Megvalósítás:</em> &quot;Single Table Inheritance&quot; stratégiát alkalmazunk. Egyetlen
+                <code>Posts</code> tábla van, amelyben egy <code>post_type</code> oszlop különbözteti meg, hogy az adott
+                sor <code>Announcement</code> vagy <code>Assignment</code>. A specifikus mezők (pl.
+                <code>due_date</code>) értéke NULL lehet, ha az adott típusnál nem releváns.
+            </li>
+        </ul>
+    </li>
+</ul>
+<h2 id="-3-csomagol-si-terv-modulok-"><strong>3. Csomagolási terv (Modulok)</strong></h2>
+<p>A rendszert funkcionális és réteg szerinti bontásban szervezzük csomagokba (könyvtárakba), hogy az implementációs
+    egységek jól elkülönüljenek.</p>
+<p><strong>Backend struktúra (API):</strong></p>
+<ul>
+    <li><code>src/config</code>: Konfigurációs fájlok (adatbázis kapcsolat, környezeti változók).</li>
+    <li><code>src/controllers</code>: A vezérlő objektumok, amelyek a HTTP kéréseket kezelik (pl. <code>courseController.js</code>).
+    </li>
+    <li><code>src/models</code>: Az adatbázis sémák és entitás definíciók (pl. <code>Course.js</code>,
+        <code>User.js</code>).
+    </li>
+    <li><code>src/routes</code>: Az API végpontok definíciói (pl. <code>/api/courses</code>).</li>
+    <li><code>src/services</code>: Az üzleti logika rétege.</li>
+    <li><code>src/middleware</code>: Jogosultságkezelés, hibaellenőrzés (pl. <code>authMiddleware.js</code>).</li>
+</ul>
+<p><strong>Frontend struktúra (UI):</strong></p>
+<ul>
+    <li><code>src/components</code>: Újrafelhasználható UI elemek (gombok, kártyák, navbar).</li>
+    <li><code>src/pages</code>: Teljes képernyők (Login oldal, Kurzus oldal).</li>
+    <li><code>src/context</code>: Globális állapotkezelés (pl. bejelentkezett felhasználó adatai).</li>
+    <li><code>src/api</code>: A backend hívásokat kezelő függvények (Axios service).</li>
+</ul>
+<hr>
+<h1 id="-2-implement-ci-skeleton-k-d-"><strong>2. Implementáció (Skeleton kód)</strong></h1>
+<p>Ez a fejezet a prototípus szintű implementáció legfontosabb elemeit mutatja be.</p>
+<p><strong>Fájl: <code>src/models/Course.js</code> (Adatmodell)</strong></p>
+<pre><code class="lang-javascript">const { DataTypes } = <span class="hljs-keyword">require</span>(<span
+        class="hljs-string">'sequelize'</span>);
+const sequelize = <span class="hljs-keyword">require</span>(<span class="hljs-string">'../config/database'</span>);
+
+const Course = sequelize.<span class="hljs-class"><span class="hljs-keyword">define</span></span>(<span
+            class="hljs-string">'Course'</span>, {
+  id: {
+    <span class="hljs-keyword">type</span>: DataTypes.<span class="hljs-built_in">INTEGER</span>,
+    primaryKey: <span class="hljs-literal">true</span>,
+    autoIncrement: <span class="hljs-literal">true</span>
+  },
+  name: {
+    <span class="hljs-keyword">type</span>: DataTypes.<span class="hljs-built_in">STRING</span>,
+    allowNull: <span class="hljs-literal">false</span>
+  },
+  courseCode: {
+    <span class="hljs-keyword">type</span>: DataTypes.<span class="hljs-built_in">STRING</span>,
+    unique: <span class="hljs-literal">true</span>,
+    allowNull: <span class="hljs-literal">false</span>
+  },
+  description: {
+    <span class="hljs-keyword">type</span>: DataTypes.TEXT
+  }
+});
+
+module.exports = Course;
+</code></pre>
+<p><strong>Fájl: <code>src/controllers/courseController.js</code> (Vezérlés)</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> Course = require(<span class="hljs-string">'../models/Course'</span>);
+<span class="hljs-keyword">const</span> { v4: uuidv4 } = require(<span class="hljs-string">'uuid'</span>);
+
+exports.createCourse = <span class="hljs-keyword">async</span> (req, res) =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> { name, description } = req.body;
+    <span class="hljs-comment">// Kurzuskód generálása (üzleti logika)</span>
+    <span class="hljs-keyword">const</span> courseCode = uuidv4().substring(<span class="hljs-number">0</span>, <span
+            class="hljs-number">6</span>).toUpperCase();
+
+    <span class="hljs-keyword">const</span> newCourse = <span class="hljs-keyword">await</span> Course.create({
+      name,
+      description,
+      courseCode,
+      creatorId: req.user.id <span class="hljs-comment">// A middleware állítja be</span>
+    });
+
+    res.status(<span class="hljs-number">201</span>).json({ success: <span class="hljs-keyword">true</span>, data: newCourse });
+  } <span class="hljs-keyword">catch</span> (error) {
+    res.status(<span class="hljs-number">500</span>).json({ success: <span class="hljs-keyword">false</span>, error: error.message });
+  }
+};
+
+exports.getCourse = <span class="hljs-keyword">async</span> (req, res) =&gt; {
+    <span class="hljs-comment">// Implementáció: kurzus lekérése ID alapján</span>
+};
+</code></pre>
+<p><strong>Fájl: <code>src/routes/courseRoutes.js</code> (Útválasztás)</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> express = <span
+        class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> router = express.Router();
+<span class="hljs-keyword">const</span> courseController = <span class="hljs-built_in">require</span>(<span
+            class="hljs-string">'../controllers/courseController'</span>);
+<span class="hljs-keyword">const</span> auth = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../middleware/auth'</span>);
+
+<span class="hljs-comment">// Csak bejelentkezett felhasználók hozhatnak létre kurzust</span>
+router.post(<span class="hljs-string">'/'</span>, auth.protect, courseController.createCourse);
+router.get(<span class="hljs-string">'/:id'</span>, auth.protect, courseController.getCourse);
+
+<span class="hljs-built_in">module</span>.exports = router;
+</code></pre>
+<hr>
+<h1 id="-3-tesztel-si-terv-"><strong>3. Tesztelési terv</strong></h1>
+<h2 id="-1-tesztel-si-strat-gia-"><strong>1. Tesztelési stratégia</strong></h2>
+<p>A fejlesztés során a <strong>Jest</strong> keretrendszert használjuk unit és integrációs tesztekhez. A tesztelés
+    célja a kritikus üzleti logika (kurzuskezelés, jogosultságok) helyességének ellenőrzése a felhasználói felület (UI)
+    nélkül.</p>
+<h2 id="-2-tesztk-rnyezet-"><strong>2. Tesztkörnyezet</strong></h2>
+<ul>
+    <li><strong>Eszközök:</strong> Jest, Supertest (API végpontok tesztelésére).</li>
+    <li><strong>Adatbázis:</strong> SQLite in-memory adatbázis a tesztek futtatásához (hogy ne az éles PostgreSQL-t
+        írjuk felül).
+    </li>
+</ul>
+<h2 id="-3-tesztesetek-test-cases-"><strong>3. Tesztesetek (Test Cases)</strong></h2>
+<table border="1" cellpadding="4" cellspacing="3" width="90%">
+    <colgroup>
+        <col width="118">
+        <col width="264">
+        <col width="264">
+        <col width="264">
+        <col width="264">
+    </colgroup>
+    <tbody>
+    <tr valign="top">
+        <td width="118">
+            <p align="left" lang="hu-HU"><font size="3">#</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">Típus</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">Teszt neve</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3">Bemenet / Cselekvés</font></p>
+        </td>
+        <td width="264">
+            <p align="left" lang="hu-HU"><font size="3"></font>Elvárt eredmény</p>
+        </td>
+    </tr>
+    <tr class="separator">
+        <td colspan="5">Automatizált Tesztek</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Osztályzat érvényesség</strong></td>
+        <td><code>saveGrade()</code> hívása 101-es vagy -5-ös értékkel.</td>
+        <td>Validációs hiba dobása, az adat nem mentődik.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Kurzuskód generálás</strong></td>
+        <td>Új kurzus létrehozása kód szinten (<code>generateCode()</code>).</td>
+        <td>Pontosan 6-7 karakteres, egyedi alfanumerikus string.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Határidő logika</strong></td>
+        <td>Beadandó feltöltése a <code>dueDate</code> után.</td>
+        <td>A státusz automatikusan "Késve leadva" (Late) lesz.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Email formátum</strong></td>
+        <td>Regisztráció érvénytelen email címmel (pl. nincs @).</td>
+        <td>A validátor elutasítja a bemenetet hibakóddal.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Archiválás</strong></td>
+        <td><code>archiveCourse(id)</code> hívása aktív kurzusra.</td>
+        <td>Az <code>isArchived</code> mező true-ra vált, adat nem vész el.</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td><span class="badge badge-auto">Automata</span></td>
+        <td><strong>Jogosultság (Backend)</strong></td>
+        <td>Diák próbál tanári API végpontot hívni.</td>
+        <td><code>403 Forbidden</code> hibakód visszaadása.</td>
+    </tr>
+
+    <tr class="separator">
+        <td colspan="5">Manuális (Felhasználói felület) Tesztek</td>
+    </tr>
+
+    <tr>
+        <td>7</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Belépés</strong></td>
+        <td>Helyes adatok megadása + "Bejelentkezés" gomb.</td>
+        <td>Sikeres átirányítás a főoldalra (Dashboard).</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Tárgy információk</strong></td>
+        <td>A diák vagy tanár rákattint egy tárgyra.</td>
+        <td>Megjelenik a tárgy leírása, tanulók száma, aktív feladatok, stb.</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Kurzus létrehozása</strong></td>
+        <td>A tanár megnyomja a "Tanfolyam létrehozása" gombot.</td>
+        <td>Megjelenik minden tárgyhoz kapcsolódó infó mező, ami a létrehozáshoz kell.</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Csatlakozás kóddal</strong></td>
+        <td>A "Csatlakozás kurzushoz" opcióra kattintva a diák beírja a kódot.</td>
+        <td>A rendszer rövid töltés után belépteti a diákot az adott kurzus felületére.</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Mobil nézet</strong></td>
+        <td>Ablak átméretezése mobil szélességre.</td>
+        <td>A menü összecsukódik (hamburger), a kártyák egymás alá kerülnek.</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td><span class="badge badge-manual">Manuális</span></td>
+        <td><strong>Jegy visszaadása</strong></td>
+        <td>Tanár beírja a jegyet + "Visszaadás" gomb.</td>
+        <td>Státusz "Osztályozva"-ra vált, diák értesítést kap.</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="-4-skeletonhoz-tartoz-minta-tesztk-d-"><strong>4. Skeletonhoz tartozó minta tesztkód</strong></h2>
+<pre><code class="lang-javascript"><span class="hljs-comment">// tests/course.test.js</span>
+<span class="hljs-keyword">const</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">'supertest'</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../server'</span>); <span
+            class="hljs-comment">// Az Express app importálása</span>
+
+describe(<span class="hljs-string">'Kurzus API Végpontok'</span>, () =&gt; {
+  it(<span class="hljs-string">'Létre kell hozzon egy új kurzust hitelesített felhasználó esetén'</span>, <span
+            class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> request(app)
+      .post(<span class="hljs-string">'/api/courses'</span>)
+      .set(<span class="hljs-string">'Authorization'</span>, <span class="hljs-string">`Bearer <span class="hljs-subst">${testToken}</span>`</span>)
+      .send({
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'Teszt Kurzus'</span>,
+        <span class="hljs-attr">description</span>: <span class="hljs-string">'Ez egy unit teszt kurzus'</span>
+      });
+
+    expect(res.statusCode).toEqual(<span class="hljs-number">201</span>);
+    expect(res.body.data).toHaveProperty(<span class="hljs-string">'courseCode'</span>);
+  });
+});
+</code></pre>
+<hr>
+<h1><strong>4. Demó</strong></h1>
+<div style="text-align: center">
+    <img src="dashboard.jpg" alt="dashboard"/>
+    <br>
+    <img src="tanfolyam_reszletei.jpg"/>
+    <br>
+    <img src="tanfolyam_letrehozasa.jpg"/>
+    <br>    
+</div>
+<hr>
+<h1 id="-5-munkanapl-h3-f-zis-"><strong>5. Munkanapló</strong></h1>
+<table border="1" cellpadding="4" cellspacing="3" width="90%">
+    <thead>
+    <tr>
+        <th style="text-align:left">Dátum</th>
+        <th style="text-align:left">Verzió</th>
+        <th style="text-align:left">Leírás</th>
+        <th style="text-align:left">Szerző</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="text-align:left">2025. 11. 28.</td>
+        <td style="text-align:left">0.1</td>
+        <td style="text-align:left">Objektumtervezés: Vezérlési stratégia és modulstruktúra kidolgozása</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 11. 29.</td>
+        <td style="text-align:left">0.2</td>
+        <td style="text-align:left">Implementációs stratégia: Adatbázis kapcsolatok leképezése ORM-re</td>
+        <td style="text-align:left">Fodor Marcell</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 12. 01.</td>
+        <td style="text-align:left">0.3</td>
+        <td style="text-align:left">Skeleton kód elkészítése (Backend setup, Course model, Controller)</td>
+        <td style="text-align:left">Szabó Zsombor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 12. 02.</td>
+        <td style="text-align:left">0.4</td>
+        <td style="text-align:left">Skeleton kód kiegészítése (API route-ok, Auth middleware vázlat)</td>
+        <td style="text-align:left">Tóth Zsombor Gábor</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 12. 03.</td>
+        <td style="text-align:left">0.5</td>
+        <td style="text-align:left">Tesztelési terv kidolgozása és minta tesztesetek írása</td>
+        <td style="text-align:left">Petercsák Regő</td>
+    </tr>
+    <tr>
+        <td style="text-align:left">2025. 12. 04.</td>
+        <td style="text-align:left">1.0</td>
+        <td style="text-align:left">H5 dokumentáció véglegesítése és összefűzése</td>
+        <td style="text-align:left">Vaszily Noel Péter</td>
+    </tr>
+    </tbody>
+</table>
+</body>
